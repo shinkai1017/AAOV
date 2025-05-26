@@ -5,6 +5,8 @@
 
 package org.example.jobs.external;
 
+import com.gamingmesh.jobs.Jobs;
+import com.gamingmesh.jobs.container.Job;
 import org.bukkit.entity.Player;
 import org.example.jobs.storage.AbilityStorage;
 import com.gamingmesh.jobs.container.JobsPlayer;
@@ -19,8 +21,8 @@ public class JobsHook {
         storage = abilityStorage;
     }
     public static int getJobLevel(Player player, String jobName) {
-        if (player == null || jobName == null) return 0;
-        UUID playerId = player.getUniqueId();
-        return storage.getJobLevel(playerId, jobName);
+        Job job = Jobs.getJob(jobName);
+        JobsPlayer jobsPlayer = Jobs.getPlayerManager().getJobsPlayer(player);
+        return jobsPlayer.getJobProgression(job).getLevel();
     }
 }
