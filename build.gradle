@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17)) // ← PaperはJDK17まで対応で安定
+}
+
+repositories {
+    mavenCentral()
+
+    // Paper API の取得元
+    maven {
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+
+    // ローカルJARを使うための設定
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // Paper API（compileOnlyでOK）
+    compileOnly 'io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT'
+
+    // Jobs プラグインの jar（libs フォルダに格納している前提）
+    compileOnly name: 'Jobs5.2.6.0'
+}

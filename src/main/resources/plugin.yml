@@ -1,0 +1,10 @@
+name: AbilityOfVirtuoso
+version: 1.0
+main: org.example.jobs.AbilityPlugin
+api-version: 1.20
+commands:
+  ability:
+    description: アビリティメニューを開く
+    usage: /ability
+    permission: ability.use
+    permission-message: あなたにはこのコマンドを使う権限がありません。
